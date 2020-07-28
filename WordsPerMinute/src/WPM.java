@@ -27,8 +27,10 @@ public class WPM {
 		
 		StringBuilder builder = new StringBuilder();
 		for(int i = 0; i<10; i++) {
+			//add random words to the input array
 			input[i] = (WORDS[rand.nextInt(9)]);
 		}
+		//create a string from the input array
 		for (String value : input) {
 			builder.append(value + " ");
 		}
@@ -40,7 +42,7 @@ public class WPM {
 		
 		try (Scanner scan = new Scanner(System.in)) {
 			String typedWords = scan.nextLine();
-			
+			//splits the inputarr and creates a string
 			String[] inputarr = typedWords.split("\\W+");
 			
 			
@@ -48,12 +50,13 @@ public class WPM {
 			double elapsedTime = end - start;
 			double seconds = elapsedTime/ 1000000000.0;
 			int numChars = typedWords.length();
+			//algorithm to find the words per minute minus the number of errors
 			int wpm = (int) (((((double) numChars / 5) / seconds) * 60) - CheckWords(input, inputarr));
 			
 			System.out.println("Your wpm is " + wpm + "!");
 		}
 	}
-	
+	//method to check for errors
 	public static int CheckWords(String[] TestWords, String[] UserWords){
 		int errors = 0;
 		for(int i = 0; i<TestWords.length; i++) {
